@@ -42,36 +42,42 @@ export const StockTransferInfo = withSkeletonTemplate<Props>(
         })
       : {}
 
+    if (orderNumber === '#' && shipmentNumber === '#') return <></>
+
     return (
       <Section title='Info'>
-        <ListItem tag='div'>
-          <Text tag='div' variant='info'>
-            Order
-          </Text>
-          <Text tag='div' weight='semibold'>
-            {canAccess('orders') ? (
-              <Button variant='link' {...navigateToOrder}>
-                {orderNumber}
-              </Button>
-            ) : (
-              orderNumber
-            )}
-          </Text>
-        </ListItem>
-        <ListItem tag='div'>
-          <Text tag='div' variant='info'>
-            Shipment
-          </Text>
-          <Text tag='div' weight='semibold'>
-            {canAccess('orders') ? (
-              <Button variant='link' {...navigateToShipment}>
-                {shipmentNumber}
-              </Button>
-            ) : (
-              shipmentNumber
-            )}
-          </Text>
-        </ListItem>
+        {orderNumber !== '#' && (
+          <ListItem tag='div'>
+            <Text tag='div' variant='info'>
+              Order
+            </Text>
+            <Text tag='div' weight='semibold'>
+              {canAccess('orders') ? (
+                <Button variant='link' {...navigateToOrder}>
+                  {orderNumber}
+                </Button>
+              ) : (
+                orderNumber
+              )}
+            </Text>
+          </ListItem>
+        )}
+        {shipmentNumber !== '#' && (
+          <ListItem tag='div'>
+            <Text tag='div' variant='info'>
+              Shipment
+            </Text>
+            <Text tag='div' weight='semibold'>
+              {canAccess('orders') ? (
+                <Button variant='link' {...navigateToShipment}>
+                  {shipmentNumber}
+                </Button>
+              ) : (
+                shipmentNumber
+              )}
+            </Text>
+          </ListItem>
+        )}
       </Section>
     )
   }
