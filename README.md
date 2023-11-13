@@ -1,2 +1,1 @@
-# app-stock-transfers
-Commerce Layer application for managing stock transfers.
+packages/app/README.md
