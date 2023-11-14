@@ -1,6 +1,7 @@
 import { instructions } from '#data/filters'
 import { presets } from '#data/lists'
 import { appRoutes } from '#data/routes'
+import { useHomeCounter } from '#hooks/useHomeCounter'
 import {
   Icon,
   List,
@@ -14,7 +15,6 @@ import {
 } from '@commercelayer/app-elements'
 import { Link, useLocation } from 'wouter'
 import { useSearch } from 'wouter/use-location'
-import { useListCounters } from '../metricsApi/useListCounters'
 
 export function Home(): JSX.Element {
   const {
@@ -24,11 +24,22 @@ export function Home(): JSX.Element {
 
   const [, setLocation] = useLocation()
   const search = useSearch()
-  const { data: counters, isLoading: isLoadingCounters } = useListCounters()
 
   const { adapters, SearchWithNav } = useResourceFilters({
     instructions
   })
+
+  const { data: counterPicking, isLoading: isLoadingPicking } =
+    useHomeCounter('picking')
+
+  const { data: counterInTransit, isLoading: isLoadingIntransit } =
+    useHomeCounter('in_transit')
+
+  const { data: counterOnHold, isLoading: isLoadingOnHold } =
+    useHomeCounter('on_hold')
+
+  const isLoadingCounters =
+    isLoadingPicking || isLoadingIntransit || isLoadingOnHold
 
   return (
     <PageLayout
@@ -64,7 +75,8 @@ export function Home(): JSX.Element {
                 icon={<Icon name='check' background='orange' gap='small' />}
               >
                 <Text weight='semibold'>
-                  {presets.picking.viewTitle} {formatCounter(counters?.picking)}
+                  {presets.picking.viewTitle}{' '}
+                  {formatCounter(counterPicking?.meta.recordCount)}
                 </Text>
                 <Icon name='caretRight' />
               </ListItem>
@@ -85,7 +97,7 @@ export function Home(): JSX.Element {
               >
                 <Text weight='semibold'>
                   {presets.in_transit.viewTitle}{' '}
-                  {formatCounter(counters?.in_transit)}
+                  {formatCounter(counterInTransit?.meta.recordCount)}
                 </Text>
                 <Icon name='caretRight' />
               </ListItem>
@@ -105,7 +117,8 @@ export function Home(): JSX.Element {
                 }
               >
                 <Text weight='semibold'>
-                  {presets.on_hold.viewTitle} {formatCounter(counters?.on_hold)}
+                  {presets.on_hold.viewTitle}{' '}
+                  {formatCounter(counterOnHold?.meta.recordCount)}
                 </Text>
                 <Icon name='caretRight' />
               </ListItem>
