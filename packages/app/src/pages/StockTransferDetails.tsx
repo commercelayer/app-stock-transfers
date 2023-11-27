@@ -34,7 +34,7 @@ export function StockTransferDetails(): JSX.Element {
 
   const { stockTransfer, isLoading } = useStockTransferDetails(stockTransferId)
 
-  if (stockTransferId === undefined || !canUser('read', 'stock_transfers')) {
+  if (stockTransferId === '' || !canUser('read', 'stock_transfers')) {
     return (
       <PageLayout
         title='Stock transfers'
