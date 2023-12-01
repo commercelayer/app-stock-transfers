@@ -27,7 +27,7 @@ jobs:
   build:
     <<: *image
     environment:
-      PUBLIC_PROJECT_PATH: stock-transfers
+      PUBLIC_PROJECT_PATH: stock_transfers
     steps:
       - checkout
       - <<: *setup
