@@ -9,6 +9,7 @@ import {
   PageLayout,
   SkeletonTemplate,
   Spacer,
+  StatusIcon,
   Text,
   useResourceFilters,
   useTokenProvider
@@ -46,9 +47,13 @@ export function Home(): JSX.Element {
       title='Stock transfers'
       mode={mode}
       gap='only-top'
-      onGoBack={() => {
-        window.location.href =
-          dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
+      navigationButton={{
+        onClick: () => {
+          window.location.href =
+            dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
+        },
+        label: 'Hub',
+        icon: 'arrowLeft'
       }}
     >
       <SearchWithNav
@@ -72,7 +77,9 @@ export function Home(): JSX.Element {
             >
               <ListItem
                 tag='a'
-                icon={<Icon name='check' background='orange' gap='small' />}
+                icon={
+                  <StatusIcon name='check' background='orange' gap='small' />
+                }
               >
                 <Text weight='semibold'>
                   {presets.picking.viewTitle}{' '}
@@ -92,7 +99,11 @@ export function Home(): JSX.Element {
               <ListItem
                 tag='a'
                 icon={
-                  <Icon name='arrowUpRight' background='orange' gap='small' />
+                  <StatusIcon
+                    name='arrowUpRight'
+                    background='orange'
+                    gap='small'
+                  />
                 }
               >
                 <Text weight='semibold'>
@@ -113,7 +124,11 @@ export function Home(): JSX.Element {
               <ListItem
                 tag='a'
                 icon={
-                  <Icon name='chatCircle' background='orange' gap='small' />
+                  <StatusIcon
+                    name='chatCircle'
+                    background='orange'
+                    gap='small'
+                  />
                 }
               >
                 <Text weight='semibold'>
@@ -137,7 +152,9 @@ export function Home(): JSX.Element {
             >
               <ListItem
                 tag='a'
-                icon={<Icon name='asterisk' background='black' gap='small' />}
+                icon={
+                  <StatusIcon name='asterisk' background='black' gap='small' />
+                }
               >
                 <Text weight='semibold'>{presets.history.viewTitle}</Text>
                 <Icon name='caretRight' />

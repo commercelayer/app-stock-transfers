@@ -1,5 +1,4 @@
 import { DetailsContextMenu } from '#components/DetailsContextMenu'
-import { ScrollToTop } from '#components/ScrollToTop'
 import { StockTransferAddresses } from '#components/StockTransferAddresses'
 import { StockTransferInfo } from '#components/StockTransferInfo'
 import { StockTransferSteps } from '#components/StockTransferSteps'
@@ -38,8 +37,12 @@ export function StockTransferDetails(): JSX.Element {
     return (
       <PageLayout
         title='Stock transfers'
-        onGoBack={() => {
-          setLocation(appRoutes.home.makePath())
+        navigationButton={{
+          onClick: () => {
+            setLocation(appRoutes.home.makePath())
+          },
+          label: 'Stock Transfers',
+          icon: 'arrowLeft'
         }}
         mode={mode}
       >
@@ -88,14 +91,18 @@ export function StockTransferDetails(): JSX.Element {
           )}
         </SkeletonTemplate>
       }
-      onGoBack={() => {
-        goBack({
-          setLocation,
-          defaultRelativePath: appRoutes.home.makePath()
-        })
+      navigationButton={{
+        onClick: () => {
+          goBack({
+            setLocation,
+            defaultRelativePath: appRoutes.home.makePath()
+          })
+        },
+        label: 'Stock Transfers',
+        icon: 'arrowLeft'
       }}
+      scrollToTop
     >
-      <ScrollToTop />
       <SkeletonTemplate isLoading={isLoading}>
         <Spacer bottom='4'>
           <StockTransferSteps stockTransfer={stockTransfer} />

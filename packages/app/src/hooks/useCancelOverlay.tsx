@@ -18,8 +18,12 @@ export function useCancelOverlay(): OverlayHook {
             title={`Confirm that you want to cancel stock transfer #${
               stockTransfer.number ?? ''
             }`}
-            onGoBack={() => {
-              close()
+            navigationButton={{
+              onClick: () => {
+                close()
+              },
+              label: 'Close',
+              icon: 'x'
             }}
             description='This action cannot be undone, proceed with caution.'
           />
