@@ -1,5 +1,5 @@
-import { Button, PageHeading, useOverlay } from '@commercelayer/app-elements';
-import { type StockTransfer } from '@commercelayer/sdk';
+import { Button, PageHeading, useOverlay } from '@commercelayer/app-elements'
+import { type StockTransfer } from '@commercelayer/sdk'
 
 interface OverlayHook {
   show: () => void
