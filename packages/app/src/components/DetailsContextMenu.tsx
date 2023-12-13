@@ -23,6 +23,8 @@ export const DetailsContextMenu: FC<{ stockTransfer: StockTransfer }> = ({
 
   const { show: showCancelOverlay, Overlay: CancelOverlay } = useCancelOverlay()
 
+  if (stockTransfer.status !== 'completed') return null
+
   const triggerDropDownItems = triggerMenuActions
     .toReversed()
     .map((triggerAction, idx) => (
