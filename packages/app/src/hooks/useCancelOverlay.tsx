@@ -1,5 +1,5 @@
-import { Button, PageHeading, useOverlay } from '@commercelayer/app-elements'
-import { type StockTransfer } from '@commercelayer/sdk'
+import { Button, PageHeading, useOverlay } from '@commercelayer/app-elements';
+import { type StockTransfer } from '@commercelayer/sdk';
 
 interface OverlayHook {
   show: () => void
@@ -22,7 +22,7 @@ export function useCancelOverlay(): OverlayHook {
               onClick: () => {
                 close()
               },
-              label: 'Close',
+              label: 'Cancel',
               icon: 'x'
             }}
             description='This action cannot be undone, proceed with caution.'
