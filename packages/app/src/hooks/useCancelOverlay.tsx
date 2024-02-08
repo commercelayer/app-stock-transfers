@@ -13,7 +13,7 @@ export function useCancelOverlay(): OverlayHook {
     show: open,
     Overlay: ({ stockTransfer, onConfirm }) => {
       return (
-        <OverlayElement>
+        <OverlayElement backgroundColor='light'>
           <PageHeading
             title={`Confirm that you want to cancel stock transfer #${
               stockTransfer.number ?? ''

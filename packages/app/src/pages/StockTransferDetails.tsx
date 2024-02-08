@@ -39,7 +39,7 @@ export function StockTransferDetails(): JSX.Element {
         title='Stock transfers'
         navigationButton={{
           onClick: () => {
-            setLocation(appRoutes.home.makePath())
+            setLocation(appRoutes.home.makePath({}))
           },
           label: 'Stock Transfers',
           icon: 'arrowLeft'
@@ -49,7 +49,7 @@ export function StockTransferDetails(): JSX.Element {
         <EmptyState
           title='Not authorized'
           action={
-            <Link href={appRoutes.home.makePath()}>
+            <Link href={appRoutes.home.makePath({})}>
               <Button variant='primary'>Go back</Button>
             </Link>
           }
@@ -95,7 +95,7 @@ export function StockTransferDetails(): JSX.Element {
         onClick: () => {
           goBack({
             setLocation,
-            defaultRelativePath: appRoutes.home.makePath()
+            defaultRelativePath: appRoutes.home.makePath({})
           })
         },
         label: 'Stock Transfers',

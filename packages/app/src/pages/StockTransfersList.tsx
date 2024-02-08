@@ -10,7 +10,7 @@ import {
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { useLocation } from 'wouter'
-import { navigate, useSearch } from 'wouter/use-location'
+import { navigate, useSearch } from 'wouter/use-browser-location'
 
 export function StockTransfersList(): JSX.Element {
   const {
@@ -38,7 +38,7 @@ export function StockTransfersList(): JSX.Element {
       gap='only-top'
       navigationButton={{
         onClick: () => {
-          setLocation(appRoutes.home.makePath())
+          setLocation(appRoutes.home.makePath({}))
         },
         label: 'Stock Transfers',
         icon: 'arrowLeft'
@@ -52,7 +52,7 @@ export function StockTransfersList(): JSX.Element {
           })
         }}
         onFilterClick={(queryString) => {
-          setLocation(appRoutes.filters.makePath(queryString))
+          setLocation(appRoutes.filters.makePath({}, queryString))
         }}
         hideFiltersNav={hideFiltersNav}
       />
@@ -84,8 +84,8 @@ export function StockTransfersList(): JSX.Element {
                 isUserCustomFiltered
                   ? 'userFiltered'
                   : viewTitle !== presets.history.viewTitle
-                  ? 'presetView'
-                  : 'history'
+                    ? 'presetView'
+                    : 'history'
               }
             />
           }
