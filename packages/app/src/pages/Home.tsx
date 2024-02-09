@@ -15,7 +15,7 @@ import {
   useTokenProvider
 } from '@commercelayer/app-elements'
 import { Link, useLocation } from 'wouter'
-import { useSearch } from 'wouter/use-location'
+import { useSearch } from 'wouter/use-browser-location'
 
 export function Home(): JSX.Element {
   const {
@@ -60,7 +60,7 @@ export function Home(): JSX.Element {
         hideFiltersNav
         onFilterClick={() => {}}
         onUpdate={(qs) => {
-          setLocation(appRoutes.list.makePath(qs))
+          setLocation(appRoutes.list.makePath({}, qs))
         }}
         queryString={search}
       />
@@ -70,10 +70,12 @@ export function Home(): JSX.Element {
           <List title='Open'>
             <Link
               href={appRoutes.list.makePath(
+                {},
                 adapters.adaptFormValuesToUrlQuery({
                   formValues: presets.picking
                 })
               )}
+              asChild
             >
               <ListItem
                 tag='a'
@@ -91,10 +93,12 @@ export function Home(): JSX.Element {
 
             <Link
               href={appRoutes.list.makePath(
+                {},
                 adapters.adaptFormValuesToUrlQuery({
                   formValues: presets.in_transit
                 })
               )}
+              asChild
             >
               <ListItem
                 tag='a'
@@ -116,10 +120,12 @@ export function Home(): JSX.Element {
 
             <Link
               href={appRoutes.list.makePath(
+                {},
                 adapters.adaptFormValuesToUrlQuery({
                   formValues: presets.on_hold
                 })
               )}
+              asChild
             >
               <ListItem
                 tag='a'
@@ -145,15 +151,21 @@ export function Home(): JSX.Element {
           <List title='Browse'>
             <Link
               href={appRoutes.list.makePath(
+                {},
                 adapters.adaptFormValuesToUrlQuery({
                   formValues: presets.history
                 })
               )}
+              asChild
             >
               <ListItem
                 tag='a'
                 icon={
-                  <StatusIcon name='asterisk' background='black' gap='small' />
+                  <StatusIcon
+                    name='asteriskSimple'
+                    background='black'
+                    gap='small'
+                  />
                 }
               >
                 <Text weight='semibold'>{presets.history.viewTitle}</Text>

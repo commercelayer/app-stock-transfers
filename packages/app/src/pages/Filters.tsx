@@ -28,7 +28,7 @@ export function Filters(): JSX.Element {
     >
       <FiltersForm
         onSubmit={(filtersQueryString) => {
-          setLocation(appRoutes.list.makePath(filtersQueryString))
+          setLocation(appRoutes.list.makePath({}, filtersQueryString))
         }}
       />
     </PageLayout>
