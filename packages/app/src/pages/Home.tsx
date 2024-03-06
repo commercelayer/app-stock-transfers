@@ -3,26 +3,20 @@ import { presets } from '#data/lists'
 import { appRoutes } from '#data/routes'
 import { useHomeCounter } from '#hooks/useHomeCounter'
 import {
+  HomePageLayout,
   Icon,
   List,
   ListItem,
-  PageLayout,
   SkeletonTemplate,
   Spacer,
   StatusIcon,
   Text,
-  useResourceFilters,
-  useTokenProvider
+  useResourceFilters
 } from '@commercelayer/app-elements'
 import { Link, useLocation } from 'wouter'
 import { useSearch } from 'wouter/use-browser-location'
 
 export function Home(): JSX.Element {
-  const {
-    dashboardUrl,
-    settings: { mode }
-  } = useTokenProvider()
-
   const [, setLocation] = useLocation()
   const search = useSearch()
 
@@ -43,19 +37,7 @@ export function Home(): JSX.Element {
     isLoadingPicking || isLoadingIntransit || isLoadingOnHold
 
   return (
-    <PageLayout
-      title='Stock transfers'
-      mode={mode}
-      gap='only-top'
-      navigationButton={{
-        onClick: () => {
-          window.location.href =
-            dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
-        },
-        label: 'Hub',
-        icon: 'arrowLeft'
-      }}
-    >
+    <HomePageLayout title='Stock transfers'>
       <SearchWithNav
         hideFiltersNav
         onFilterClick={() => {}}
@@ -175,7 +157,7 @@ export function Home(): JSX.Element {
           </List>
         </Spacer>
       </SkeletonTemplate>
-    </PageLayout>
+    </HomePageLayout>
   )
 }
 
