@@ -25,6 +25,7 @@ export function Filters(): JSX.Element {
         label: 'Stock Transfers',
         icon: 'arrowLeft'
       }}
+      overlay
     >
       <FiltersForm
         onSubmit={(filtersQueryString) => {
