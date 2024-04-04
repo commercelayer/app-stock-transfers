@@ -47,7 +47,7 @@ export const StockTransferInfo = withSkeletonTemplate<Props>(
     return (
       <Section title='Info'>
         {orderNumber !== '#' && (
-          <ListItem tag='div'>
+          <ListItem>
             <Text tag='div' variant='info'>
               Order
             </Text>
@@ -63,7 +63,7 @@ export const StockTransferInfo = withSkeletonTemplate<Props>(
           </ListItem>
         )}
         {shipmentNumber !== '#' && (
-          <ListItem tag='div'>
+          <ListItem>
             <Text tag='div' variant='info'>
               Shipment
             </Text>
