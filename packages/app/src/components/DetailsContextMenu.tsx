@@ -5,9 +5,11 @@ import {
 import { useCancelOverlay } from '#hooks/useCancelOverlay'
 import { useTriggerAttribute } from '#hooks/useTriggerAttribute'
 import {
+  Button,
   Dropdown,
   DropdownDivider,
-  DropdownItem
+  DropdownItem,
+  Icon
 } from '@commercelayer/app-elements'
 import type { StockTransfer } from '@commercelayer/sdk/lib/cjs/model'
 import { useMemo, type FC } from 'react'
@@ -49,7 +51,14 @@ export const DetailsContextMenu: FC<{ stockTransfer: StockTransfer }> = ({
 
   return (
     <>
-      <Dropdown dropdownItems={triggerDropDownItems} />
+      <Dropdown
+        dropdownLabel={
+          <Button variant='secondary' size='small'>
+            <Icon name='dotsThree' size={16} weight='bold' />
+          </Button>
+        }
+        dropdownItems={triggerDropDownItems}
+      />
       <CancelOverlay
         stockTransfer={stockTransfer}
         onConfirm={() => {
